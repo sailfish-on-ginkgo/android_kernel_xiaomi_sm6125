@@ -334,18 +334,6 @@ static int __set_selection(const struct tiocl_selection __user *sel, struct tty_
 	return ret;
 }
 
-int set_selection(const struct tiocl_selection __user *v, struct tty_struct *tty)
-{
-	int ret;
-
-	mutex_lock(&sel_lock);
-	console_lock();
-	ret = __set_selection(v, tty);
-	console_unlock();
-	mutex_unlock(&sel_lock);
-
-	return ret;
-}
 
 /* Insert the contents of the selection buffer into the
  * queue of the tty associated with the current console.
